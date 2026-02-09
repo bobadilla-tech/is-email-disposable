@@ -62,6 +62,7 @@ disposable.IsDisposable("user@gmail.com")    // returns false
 ```
 
 The check is case-insensitive:
+
 ```go
 disposable.IsDisposable("USER@TEMPMAIL.COM") // returns true
 ```
@@ -117,6 +118,7 @@ go test -bench=.
 ```
 
 Example benchmark results:
+
 ```
 BenchmarkIsDisposable-8              	10000000	       120 ns/op
 BenchmarkIsDisposableDomain-8        	20000000	        85 ns/op
@@ -126,6 +128,7 @@ BenchmarkIsDisposableNotFound-8      	10000000	       115 ns/op
 ## Automated Updates
 
 This package includes a GitHub Action that:
+
 - Runs on the 1st of every month
 - Downloads the latest blocklist from the upstream repository
 - Runs tests to ensure compatibility
@@ -133,6 +136,22 @@ This package includes a GitHub Action that:
 - Can also be triggered manually via workflow dispatch
 
 See [.github/workflows/update-blocklist.yml](.github/workflows/update-blocklist.yml) for details.
+
+## Need More Email Features?
+
+This package provides offline disposable email detection, but if you need additional email-related features, check out [**Requiems API**](https://requiems.xyz):
+
+🔗 **[requiems.xyz](https://requiems.xyz)** | 📚 **[Email API Documentation](https://requiems.xyz/docs/email)**
+
+Requiems provides a comprehensive suite of email-related API services including:
+
+- Email validation and verification
+- Disposable email detection (cloud-based)
+- Email deliverability checks
+- Domain reputation analysis
+- And more email utilities
+
+Perfect for when you need real-time validation, additional email intelligence, or a cloud-based solution.
 
 ## Contributing
 
