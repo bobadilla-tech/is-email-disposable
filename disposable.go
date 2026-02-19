@@ -59,10 +59,12 @@ func loadBlocklist() {
 // The email parameter should be a complete email address (e.g., "user@example.com").
 // Returns true if the domain part of the email is in the disposable list.
 //
-// The check is case-insensitive. For example:
+// Leading and trailing whitespace is trimmed automatically. The check is also
+// case-insensitive. For example:
 //
-//	IsDisposable("user@TempMail.com") == IsDisposable("user@tempmail.com")
+//	IsDisposable("  user@TempMail.com  ") == IsDisposable("user@tempmail.com")
 func IsDisposable(email string) bool {
+	email = strings.TrimSpace(strings.ToLower(email))
 	if email == "" {
 		return false
 	}

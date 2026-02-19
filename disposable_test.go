@@ -61,8 +61,13 @@ func TestIsDisposable(t *testing.T) {
 			expected: false,
 		},
 		{
-			name:     "email with spaces",
+			name:     "email with trailing spaces",
 			email:    "user@0-mail.com ",
+			expected: true,
+		},
+		{
+			name:     "email with leading and trailing spaces",
+			email:    "  user@0-mail.com  ",
 			expected: true,
 		},
 	}
