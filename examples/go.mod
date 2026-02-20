@@ -1,6 +1,6 @@
 module github.com/bobadilla-tech/is-email-disposable/examples
 
-go 1.23
+go 1.26
 
 replace github.com/bobadilla-tech/is-email-disposable => ../
 
