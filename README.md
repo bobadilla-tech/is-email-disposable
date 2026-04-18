@@ -135,6 +135,10 @@ This package includes a GitHub Action that:
 - Creates a pull request with the changes
 - Can also be triggered manually via workflow dispatch
 
+> **Note:** if your repository disables pull requests created by `GITHUB_TOKEN`, configure either:
+> 1. **Repository Settings → Actions → General → Workflow permissions** and enable **Allow GitHub Actions to create and approve pull requests**, or
+> 2. A repository secret named `BLOCKLIST_UPDATE_TOKEN` (PAT) with `contents:write` and `pull_requests:write` permissions.
+
 See [.github/workflows/update-blocklist.yml](.github/workflows/update-blocklist.yml) for details.
 
 ## Need More Email Features?
