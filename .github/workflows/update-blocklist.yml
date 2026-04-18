@@ -81,7 +81,7 @@ jobs:
             dependencies
 
       - name: Explain required repo setting for PR creation
-        if: steps.check_changes.outputs.has_changes == 'true' && failure() && steps.create_pr.outcome == 'failure'
+        if: steps.check_changes.outputs.has_changes == 'true' && steps.create_pr.outcome == 'failure'
         run: |
           echo "::error::PR creation failed. Configure one of these options and re-run the workflow:"
           echo "::error::1) Repository Settings -> Actions -> General -> Workflow permissions -> enable 'Allow GitHub Actions to create and approve pull requests'."
