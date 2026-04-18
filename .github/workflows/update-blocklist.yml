@@ -13,17 +13,20 @@ permissions:
 jobs:
   update-blocklist:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.26'
+          cache: false
 
       - name: Set up Git
         run: |
@@ -50,10 +53,11 @@ jobs:
         run: go test -v
 
       - name: Create Pull Request
+        id: create_pr
         if: steps.check_changes.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BLOCKLIST_UPDATE_TOKEN || secrets.GITHUB_TOKEN }}
           commit-message: 'chore: update disposable email blocklist'
           title: 'chore: update disposable email blocklist'
           body: |
@@ -75,3 +79,11 @@ jobs:
           labels: |
             automated
             dependencies
+
+      - name: Explain required repo setting for PR creation
+        if: steps.check_changes.outputs.has_changes == 'true' && failure() && steps.create_pr.outcome == 'failure'
+        run: |
+          echo "::error::PR creation failed. Configure one of these options and re-run the workflow:"
+          echo "::error::1) Repository Settings -> Actions -> General -> Workflow permissions -> enable 'Allow GitHub Actions to create and approve pull requests'."
+          echo "::error::2) Add a repository secret named BLOCKLIST_UPDATE_TOKEN with a PAT that has 'contents:write' and 'pull_requests:write' permissions."
+          exit 1
