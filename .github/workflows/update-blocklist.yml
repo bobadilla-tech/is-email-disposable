@@ -4,7 +4,12 @@ on:
   schedule:
     # Run on the 1st of every month at 00:00 UTC
     - cron: '0 0 1 * *'
-  workflow_dispatch: # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Optional reason for running a manual blocklist update
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -68,6 +73,8 @@ jobs:
             ### Changes
             - Updated `disposable_email_blocklist.conf` with the latest disposable email domains
             - Source: https://github.com/disposable-email-domains/disposable-email-domains
+            - Trigger: `${{ github.event_name }}`
+            - Manual reason: `${{ github.event.inputs.reason || 'n/a' }}`
 
             ### Testing
             ✅ All tests passed successfully
