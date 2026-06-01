@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/bobadilla-tech/is-email-disposable"
+	disposable "github.com/bobadilla-tech/is-email-disposable"
 )
 
 func main() {
-	fmt.Println("=== Disposable Email Checker Demo ===\n")
+	fmt.Println("=== Disposable Email Checker Demo ===")
 
 	// Test various emails
 	emails := []string{
@@ -20,17 +20,21 @@ func main() {
 	}
 
 	fmt.Println("Checking emails:")
+	
 	for _, email := range emails {
 		isDisp := disposable.IsDisposable(email)
 		status := "✅ legitimate"
+	
 		if isDisp {
 			status = "❌ disposable"
 		}
+	
 		fmt.Printf("  %s → %s\n", email, status)
 	}
 
 	// Check just domains
 	fmt.Println("\nChecking domains:")
+	
 	domains := []string{
 		"gmail.com",
 		"tempmail.com",
@@ -40,10 +44,13 @@ func main() {
 
 	for _, domain := range domains {
 		isDisp := disposable.IsDisposableDomain(domain)
+	
 		status := "✅ legitimate"
+	
 		if isDisp {
 			status = "❌ disposable"
 		}
+	
 		fmt.Printf("  %s → %s\n", domain, status)
 	}
 
@@ -58,6 +65,7 @@ func main() {
 		"User@TempMail.Com",
 		"user@tempmail.com",
 	}
+	
 	for _, email := range testCases {
 		fmt.Printf("  %s → disposable: %v\n", email, disposable.IsDisposable(email))
 	}

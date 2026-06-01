@@ -201,24 +201,24 @@ func TestBlocklistLoaded(t *testing.T) {
 // Benchmark tests
 func BenchmarkIsDisposable(b *testing.B) {
 	email := "test@0-mail.com"
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
+	
+	for b.Loop() {
 		IsDisposable(email)
 	}
 }
 
 func BenchmarkIsDisposableDomain(b *testing.B) {
 	domain := "0-mail.com"
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
+	
+	for b.Loop() {
 		IsDisposableDomain(domain)
 	}
 }
 
 func BenchmarkIsDisposableNotFound(b *testing.B) {
 	email := "test@gmail.com"
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
+	
+	for b.Loop() {
 		IsDisposable(email)
 	}
 }
