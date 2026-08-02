@@ -3,7 +3,6 @@
 A Go package to detect disposable email addresses using an embedded, automatically-updated blocklist.
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/bobadilla-tech/is-email-disposable.svg)](https://pkg.go.dev/github.com/bobadilla-tech/is-email-disposable)
-[![Go Report Card](https://goreportcard.com/badge/github.com/bobadilla-tech/is-email-disposable)](https://goreportcard.com/report/github.com/bobadilla-tech/is-email-disposable)
 [![License](https://img.shields.io/github/license/bobadilla-tech/is-email-disposable)](LICENSE)
 
 ## Features
@@ -169,7 +168,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## Credits
 
